@@ -13,6 +13,7 @@ jobs:
   build:
     permissions:
       contents: write
+      actions: read
     strategy:
       matrix:
         include:
@@ -64,7 +65,7 @@ jobs:
       env:
         ARTIFACT_NAME: ${{ matrix.unsigned_dll_name }}
       with:
-        github-token: ${{ secrets.PAT }}
+        github-token: ${{ github.token }}
         script: |
           const { owner, repo } = context.repo;
           const run_id = context.runId;
@@ -168,7 +169,7 @@ jobs:
       env:
         ARTIFACT_NAME: ${{ matrix.unsigned_exe_name }}
       with:
-        github-token: ${{ secrets.PAT }}
+        github-token: ${{ github.token }}
         script: |
           const { owner, repo } = context.repo;
           const run_id = context.runId;
@@ -238,7 +239,7 @@ jobs:
       env:
         ARTIFACT_NAME: ${{ matrix.unsigned_msi_name }}
       with:
-        github-token: ${{ secrets.PAT }}
+        github-token: ${{ github.token }}
         script: |
           const { owner, repo } = context.repo;
           const run_id = context.runId;
